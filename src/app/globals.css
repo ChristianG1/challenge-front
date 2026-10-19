@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+
+  --color-ink-50: #f7f7f9;
+  --color-ink-100: #eeeef2;
+  --color-ink-200: #dcdce4;
+  --color-ink-400: #9a9aab;
+  --color-ink-500: #747487;
+  --color-ink-600: #5b5b6e;
+  --color-ink-700: #42424f;
+  --color-ink-900: #16161d;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-50);
+  color: var(--color-ink-900);
+}
+
+@theme {
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-list-in: list-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-toast: toast 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes list-in {
+    from { transform: translateY(-3.5rem); }
+    to { transform: translateY(0); }
+  }
+  @keyframes toast {
+    0% { opacity: 0; transform: translateY(-18px) scale(0.96); }
+    14%, 78% { opacity: 1; transform: none; }
+    100% { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
